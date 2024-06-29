@@ -15,19 +15,192 @@
         <div class="progress-bar hide" slot="progress-bar">
           <div class="update-bar"></div>
         </div>
-        <button class="center-button btn btn-primary question-button">What is my name?</button>
-        <button id="wrong-answer" class="center-button btn btn-primary answer-button">A - Gazelle</button>
-        <button id="right-answer" class="center-button btn btn-primary answer-button">B - Lion</button>
-       <!--  <button slot="ar-button" id="ar-button" class="ar-button">
-          View in your space
-        </button>
-       <div id="ar-prompt">
-          <img src="ar_hand_prompt.png">
-        </div>-->
+        <button id="question-button" class="center-button btn btn-primary question-button" onclick="playQuestionVoiceNote()">What is my name?</button>
+        <button id="wrong-answer" class="center-button btn btn-primary answer-button" onclick="playWrongAnswer()">A - Gazelle</button>
+        <button id="right-answer" class="center-button btn btn-primary answer-button" onclick="playRightAnswer()">B - Lion</button>
       </model-viewer>
     </div>
-    <script src="script.js"></script>
+    
     <!-- Loads <model-viewer> for browsers: -->
     <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.5.0/model-viewer.min.js"></script>
+    <p><audio src="/assets/audio/What is my name .mp3"></audio></p>
+    <script>
+      function playQuestionVoiceNote() {
+        const audio = new Audio('\assets\audio\What is my name .mp3"');
+        audio.play();
+      }
+
+      function playWrongAnswer() {
+        alert('Are you sure?');
+        const audio = new Audio('path-to-your-wrong-answer.mp3');
+        audio.play();
+      }
+
+      function playRightAnswer() {
+        alert('Yay! - Correct - I am a lion!');
+        const audio = new Audio('path-to-your-right-answer.mp3');
+        audio.play();
+        playConfetti();
+        playCrowdCheer();
+        showNextSceneButton();
+      }
+
+      function playConfetti() {
+        // Add your confetti animation logic here
+        console.log('Confetti animation');
+      }
+
+      function playCrowdCheer() {
+        const audio = new Audio('path-to-your-crowd-cheer.mp3');
+        audio.play();
+      }
+
+      function showNextSceneButton() {
+        // Add your logic to show the next scene button
+        console.log('Show next scene button');
+      }
+
+      document.addEventListener('DOMContentLoaded', (event) => {
+        setTimeout(() => {
+          document.getElementById('question-button').style.opacity = 1;
+        }, 1000);
+
+        setTimeout(() => {
+          document.getElementById('wrong-answer').style.opacity = 1;
+          document.getElementById('right-answer').style.opacity = 1;
+        }, 2000);
+      });
+    </script>
+    
+    <style>
+      /* Ensure the body has no margins or padding for proper positioning */
+      body {
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        background-color: #f0f0f0;
+      }
+
+      .model-container {
+        width: 100%;
+        height: 100%;
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      model-viewer {
+        width: 100%;
+        height: 100%;
+        position: relative;
+      }
+
+      .center-button {
+        position: absolute;
+        padding: 10px 20px;
+        font-size: 1.5rem;
+        opacity: 0;
+        animation-fill-mode: forwards;
+      }
+
+      .question-button {
+        top: 5%;
+        left: 50%;
+        transform: translateX(-50%);
+        font-size: 2rem;
+        animation: fadeIn 1s ease-in 1s forwards;
+      }
+
+      .answer-button {
+        font-size: 1.2rem;
+        padding: 10px;
+        animation: bounceIn 1s ease-in-out 2s forwards;
+      }
+
+      #wrong-answer {
+        top: 80%;
+        left: 25%;
+        transform: translate(-50%, -50%);
+      }
+
+      #right-answer {
+        top: 80%;
+        left: 75%;
+        transform: translate(-50%, -50%);
+      }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+        }
+        to {
+          opacity: 1;
+        }
+      }
+
+      @keyframes bounceIn {
+        0% {
+          transform: translateY(-100%);
+          opacity: 0;
+        }
+        60% {
+          transform: translateY(10%);
+          opacity: 1;
+        }
+        80% {
+          transform: translateY(-5%);
+        }
+        100% {
+          transform: translateY(0);
+        }
+      }
+
+      @media (max-width: 768px) {
+        .question-button {
+          font-size: 1.5rem;
+          padding: 5px 10px;
+        }
+
+        .answer-button {
+          font-size: 1rem;
+          padding: 5px;
+        }
+
+        #wrong-answer {
+          top: 80%;
+          left: 20%;
+        }
+
+        #right-answer {
+          top: 80%;
+          left: 80%;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .question-button {
+          font-size: 1.2rem;
+        }
+
+        .answer-button {
+          font-size: 0.9rem;
+        }
+
+        #wrong-answer {
+          top: 80%;
+          left: 15%;
+        }
+
+        #right-answer {
+          top: 80%;
+          left: 85%;
+        }
+      }
+    </style>
   </body>
 </html>
