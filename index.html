@@ -10,6 +10,7 @@
   <link type="text/css" href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
   <link type="text/css" href="https://cdn.jsdelivr.net/npm/@material/web@0.12.0/dist/mdc.material.web.css" rel="stylesheet" />
   <link type="text/css" href="./styles.css" rel="stylesheet" />
+  <link rel="icon" href="/assets/images/kidspark icon.ico" type="image/x-icon">
 </head>
 
 <body>
@@ -37,7 +38,7 @@
   <p><audio src="/assets/audio/What is my name .mp3"></audio></p>
   <script>
     function playTone() {
-      const audio = new Audio('/assets/audio/crowd cheering.mp3'); 
+      const audio = new Audio('/assets/audio/correct.mp3'); 
       audio.play();
     }
 
@@ -47,14 +48,12 @@
     }
 
     function playWrongAnswer() {
-      alert('Are you sure?');
-      const audio = new Audio('path-to-your-wrong-answer.mp3');
+      const audio = new Audio('/assets/audio/wrong.wav');
       audio.play();
     }
 
     function playRightAnswer() {
-      alert('Yay! - Correct - I am a lion!');
-      const audio = new Audio('path-to-your-right-answer.mp3');
+      const audio = new Audio('/assets/audio/correct.mp3');
       audio.play();
       playConfetti();
       playCrowdCheer();
@@ -66,7 +65,7 @@
     }
 
     function playCrowdCheer() {
-      const audio = new Audio('path-to-your-crowd-cheer.mp3');
+      const audio = new Audio('/assets/audio/crowd cheering.mp3');
       audio.play();
     }
 
